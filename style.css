@@ -1,0 +1,14 @@
+.container {
+    background: rgb(255, 203, 248);
+    padding: 60 px 80;
+    border-width: 30 px;
+}
+
+.yes-btn {
+    background: rgb(153, 207, 153);
+    color: white
+}
+.no-btn {
+    background: rgb(177, 79, 79);
+    color: white
+}
