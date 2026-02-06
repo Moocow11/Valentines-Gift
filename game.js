@@ -1,0 +1,25 @@
+let round = 1;
+let punch_cnt = 0;
+let punch_cnt_display = document.getElementById("punch_cnt");
+let rat_life = 3;
+
+let yes_btn = document.getElementById("yes_btn");
+let no_btn = document.getElementById("no_btn");
+
+let question_page = document.getElementById("question_page");
+let punch_game = document.getElementById("punch_game");
+let punch_btn = document.getElementById("punch_btn");
+
+let timer = document.getElementById("timer");
+
+yes_btn.addEventListener('click', function() {
+    question_page.style.display = 'none';
+    gift.style.display = 'block';
+});
+
+if (rat_life>0){
+    yes_btn.style.display = 'none';
+}
+else{
+    window.location.href = 'gift.html';
+}

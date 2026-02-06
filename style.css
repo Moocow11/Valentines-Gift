@@ -1,14 +1,29 @@
+h1 {
+    color: white;
+    font-family: 'Press Start 2P', monospace;
+
+}
+
+
 .container {
     background: rgb(255, 203, 248);
     padding: 60 px 80;
     border-width: 30 px;
 }
 
-.yes-btn {
+.yes_btn {
     background: rgb(153, 207, 153);
     color: white
 }
-.no-btn {
+.no_btn {
     background: rgb(177, 79, 79);
     color: white
+}
+
+
+#punch_game {
+    display: none;
+}
+#punch_game.active {
+    display: block;
 }
