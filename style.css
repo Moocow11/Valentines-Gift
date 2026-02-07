@@ -3,19 +3,23 @@ h1 {
     font-family: 'Press Start 2P', monospace;
 
 }
-
-
-.container {
+body {
     background: rgb(255, 203, 248);
-    padding: 60 px 80;
-    border-width: 30 px;
+    padding: 60px 80px;
+    border-width: 30px;
 }
 
-.yes_btn {
+.buttons {
+    font-family: 'Press Start 2P', monospace;
+    padding: 20px 40px;
+    font-size: 40px;
+}
+
+#yes_btn {
     background: rgb(153, 207, 153);
     color: white
 }
-.no_btn {
+#no_btn {
     background: rgb(177, 79, 79);
     color: white
 }
@@ -26,4 +30,17 @@ h1 {
 }
 #punch_game.active {
     display: block;
+}
+#gift {
+    display: none;
+}
+#gift.active {
+    display: block;
+}
+
+#rat {
+    display: none;
+    position: absolute;
+    width: 150px;
+    image-rendering: pixelated;
 }
