@@ -30,10 +30,31 @@ no_btn.addEventListener('click', function(){
 })
 
 function ratMove(){
+    yes_btn.disabled = true;
     rat.style.display = 'block';
+    let xPos = 1500;
+    let yPos = 110;
+
+
     
     let frameInterval = setInterval(function() {
         rat_currMove = (rat_currMove + 1) % 4;
         rat.src = rat_move[rat_currMove];
     }, 100);
+
+    let moveInterval = setInterval(function() {
+        xPos -= 10;
+        rat.style.left = xPos + 'px';
+
+        let yesPos = yes_btn.offsetLeft;   // X relative to parent
+        let yesY = yes_btn.offsetTop;      // Y relative to parent
+        
+        console.log("Rat X:", rat.offsetLeft);
+        console.log("Rat Y:", rat.offsetTop);
+    
+        if (xPos < 521){
+            clearInterval(frameInterval);
+            clearInterval(moveInterval);
+        }
+    }, 30)
 }

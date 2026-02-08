@@ -1,7 +1,9 @@
 h1 {
     color: white;
     font-family: 'Press Start 2P', monospace;
-
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
 }
 body {
     background: rgb(255, 203, 248);
@@ -11,20 +13,29 @@ body {
 
 .buttons {
     font-family: 'Press Start 2P', monospace;
-    padding: 20px 40px;
-    font-size: 40px;
+    padding: 10px 15px;
+    font-size: 25px;
+    display: flex;
+    position: relative;
+    top: 175px;
+    justify-content: center;
+    gap: 30px;
 }
 
 #yes_btn {
     background: rgb(153, 207, 153);
     color: white
+    /* y: 185, x: 521 
+    */
 }
 #no_btn {
     background: rgb(177, 79, 79);
     color: white
 }
 
-
+#question_page {
+    position: relative;
+}
 #punch_game {
     display: none;
 }
@@ -41,6 +52,7 @@ body {
 #rat {
     display: none;
     position: absolute;
+    right: 1500px;
     width: 150px;
     image-rendering: pixelated;
 }
