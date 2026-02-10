@@ -6,6 +6,13 @@ let time_limit = [1, 2, 5];
 let timer_display = document.getElementById("timer");
 let startTime = null;
 let checkTimer = null;
+let rat_punch = document.getElementById("rat_punch");
+
+let hearts = [
+    document.getElementById("heart1"),
+    document.getElementById("heart2"),
+    document.getElementById("heart3")
+];
 
 let rat_life = 3;
 let rat = document.getElementById("rat");
@@ -17,13 +24,13 @@ let yes_anim_frames = ['sprites/yes_btn/yes_btn1.png', 'sprites/yes_btn/yes_btn2
 let yes_btn = document.getElementById("yes_btn");
 let no_btn = document.getElementById("no_btn");
 let punch_btn = document.getElementById("punch_btn");
+let try_again = document.getElementById("try_again");
 
 let question_page = document.getElementById("question_page");
 let punch_game = document.getElementById("punch_game");
 
 yes_btn.addEventListener('click', function() {
     if (rat_life>0){
-        rat.style.left = 1500 + 'px';
         yes_btn.style.visibility = 'hidden';  // Hide real button
         yes_anim.style.display = 'block';
         yes_anim.src = yes_anim_frames[0];
@@ -34,11 +41,15 @@ yes_btn.addEventListener('click', function() {
     }
 });
 no_btn.addEventListener('click', function(){
-    rat.style.display = 'none';
-    yes_btn.style.visibility = 'visible';
-    yes_anim.style.display = 'none';
     question_page.style.display = 'none';
     punch_game.style.display = 'block';
+    
+    rat.style.display = 'none';
+    rat_punch.style.display = 'block';
+    
+    yes_btn.style.visibility = 'visible';
+    yes_anim.style.display = 'none';
+    
     punch_game_start();
 })
 punch_btn.addEventListener('click', function(){
@@ -54,6 +65,8 @@ punch_btn.addEventListener('click', function(){
         round++;
         rat_life--;
         
+        hearts[rat_life].src = 'sprites/heart/heart_damage.png';
+        
         if (rat_life === 0){
             no_btn.style.display = 'none';
         }
@@ -67,16 +80,22 @@ punch_btn.addEventListener('click', function(){
         clearInterval(checkTimer);
     }
 
-    rat.src = 'sprites/rat/rat_damage.png';
+    rat_punch.src = 'sprites/rat/rat_damage.png';
 
     setTimeout(function() {
-        rat.src = 'sprites/rat/rat_move1.png';
+        rat_punch.src = 'sprites/rat/rat_move1.png';
     }, 100);
 })
+try_again.addEventListener('click', function(){
+    punch_cnt = 0;
+    startTime = null;
+
+    punch_game_start();  // Restart the game
+});
 
 function punch_game_start(){
     punch_btn.disabled = false;
-
+    try_again.style.display = 'none';
     punch_cnt_display.textContent = "0/" + punch_required[round - 1];
 
     if (startTime !== null){
@@ -87,10 +106,7 @@ function punch_game_start(){
             if (elapsed > time_limit[round - 1]){
                 clearInterval(checkTimer);
                 punch_btn.disabled = true;
-
-                punch_cnt = 0;
-                startTime = null;
-                punch_game_start();
+                try_again.style.display = 'block';
             }
         }, 50)
     }

@@ -35,6 +35,11 @@ body {
 }
 #punch_btn {
     background: rgb(177, 79, 79);
+    position: absolute;
+    color: white
+}
+#try_again {
+    background: rgb(105, 79, 177);
     color: white
 }
 
@@ -80,4 +85,23 @@ body {
     top: 110px;
     width: 150px;
     image-rendering: pixelated;
+}
+#rat_punch {
+    display: none;  /* Hidden during question page */
+    position: absolute;
+    top: 270px;
+    left: 650px;
+    width: 150px;
+    image-rendering: pixelated;
+}
+.hearts img {
+    width: 50px;  /* Adjust size */
+    height: 50px;
+    image-rendering: pixelated;  /* Keep pixels sharp */
+}
+.hearts {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 100px;  /* Spacing from top */
 }
