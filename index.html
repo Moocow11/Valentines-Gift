@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -30,12 +30,16 @@
         </div>
 
         <div class="buttons">
-            <button id="punch_btn"> Punch!</button>
+            <img src="sprites/punch_btn/punch_btn1.png" id="punch_btn" alt="punch">
+            <button class="buttons" id="win_btn" style="display: none;">Nice!</button>
             <button class="buttons" id="try_again"> Too Slow... <br> Try Again!</button>
         </div>
-
-        <div id="punch_cnt"> 0/8</div>
-        <div id="timer"> Time: 0.00s</div>
+        
+        <div class="info">
+            <div id="punch_cnt"> 0/8</div>
+            <div id="timer"> Time: 1.00s</div>
+        </div>
+        
     </div>
 
     <div id="gift">
@@ -47,6 +51,6 @@
         </div>
     </div>
 
-    <script src="game.js"></script>
+    <script src="js/game.js"></script>
 </body>
 </html>

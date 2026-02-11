@@ -7,6 +7,8 @@ let timer_display = document.getElementById("timer");
 let startTime = null;
 let checkTimer = null;
 let rat_punch = document.getElementById("rat_punch");
+let punch_btn_frames = ['sprites/punch_btn/punch_btn1.png', 'sprites/punch_btn/punch_btn2.png'];
+let win_btn = document.getElementById("win_btn");
 
 let hearts = [
     document.getElementById("heart1"),
@@ -41,6 +43,7 @@ yes_btn.addEventListener('click', function() {
     }
 });
 no_btn.addEventListener('click', function(){
+    try_again.style.display = 'none';
     question_page.style.display = 'none';
     punch_game.style.display = 'block';
     
@@ -53,6 +56,13 @@ no_btn.addEventListener('click', function(){
     punch_game_start();
 })
 punch_btn.addEventListener('click', function(){
+    punch_btn.src = punch_btn_frames[1];
+    
+    // Go back to frame 1 after 100ms
+    setTimeout(function() {
+        punch_btn.src = punch_btn_frames[0];
+    }, 30);
+
     if (startTime === null){
         startTime = Date.now();
         punch_game_start();
@@ -62,51 +72,96 @@ punch_btn.addEventListener('click', function(){
     punch_cnt_display.textContent = punch_cnt + "/" + punch_required[round - 1];
 
     if (punch_cnt >= punch_required[round - 1]){
-        round++;
+        punch_btn.style.pointerEvents = 'none';
+
         rat_life--;
+        startTime = null;
+        punch_cnt = 0;
         
         hearts[rat_life].src = 'sprites/heart/heart_damage.png';
         
         if (rat_life === 0){
+            rat_punch.src = 'sprites/rat/rat_dead.png';
             no_btn.style.display = 'none';
-        }
+            win_btn.textContent = "You Beat The Rat!"
+        } else if (rat_life === 1) {
+            rat_punch.src = 'sprites/rat/rat_damage.png'
+            win_btn.textContent = "Great!";
+        } else if (rat_life === 2) {
+            rat_punch.src = 'sprites/rat/rat_damage.png'
+            win_btn.textContent = "Nice!";
+        } 
 
-        punch_game.style.display = 'none';
-        question_page.style.display = 'block';
-        yes_btn.disabled = false;
-        yes_btn.style.visibility = 'visible';
-        yes_anim.style.display = 'none';
-
+        win_btn.style.display = 'block';
         clearInterval(checkTimer);
-    }
+    } else {
+        if (checkTimer !== null) {
+            rat_punch.src = 'sprites/rat/rat_damage.png';
 
-    rat_punch.src = 'sprites/rat/rat_damage.png';
-
-    setTimeout(function() {
-        rat_punch.src = 'sprites/rat/rat_move1.png';
-    }, 100);
+            setTimeout(function() {
+                rat_punch.src = 'sprites/rat/rat_move1.png';
+            }, 100);
+        }
+    }    
 })
+
 try_again.addEventListener('click', function(){
     punch_cnt = 0;
     startTime = null;
 
     punch_game_start();  // Restart the game
 });
+win_btn.addEventListener('click', function(){
+    win_btn.style.display = 'none';
+    
+    round++;
+    startTime = null;
+    punch_cnt = 0;
+    
+    if (rat_life === 0){
+        no_btn.style.display = 'none';
+    }
+
+    punch_game.style.display = 'none';
+    question_page.style.display = 'block';
+    yes_btn.disabled = false;
+    yes_btn.style.visibility = 'visible';
+    yes_anim.style.display = 'none';
+    
+    rat.style.display = 'none';
+    rat.style.left = '1500px';
+    rat.style.top = '110px';
+});
 
 function punch_game_start(){
-    punch_btn.disabled = false;
+    rat_punch.src = 'sprites/rat/rat_move1.png';
+    punch_btn.style.pointerEvents = 'auto';
     try_again.style.display = 'none';
     punch_cnt_display.textContent = "0/" + punch_required[round - 1];
+    timer_display.textContent = "Time: " + time_limit[round - 1].toFixed(2) + "s";
 
+
+    console.log("try again display: ", try_again.style.display);
+    console.log("starttime", startTime);
+    
     if (startTime !== null){
         checkTimer = setInterval(function(){
             let elapsed = (Date.now() - startTime) / 1000;
             timer_display.textContent = "Time: " + (Math.abs((time_limit[round - 1] - elapsed)).toFixed(2)) + "s";
 
+            console.log("elapsed:", elapsed);
+            console.log("time limit", time_limit[round - 1]);
+
             if (elapsed > time_limit[round - 1]){
                 clearInterval(checkTimer);
-                punch_btn.disabled = true;
+                checkTimer = null;
+                punch_btn.style.pointerEvents = 'none';
                 try_again.style.display = 'block';
+
+                setTimeout(function() {
+                    rat_punch.src = 'sprites/rat/rat_happy.png';
+                    try_again.style.display = 'block';
+                }, 50);
             }
         }, 50)
     }
@@ -114,7 +169,6 @@ function punch_game_start(){
 
 function ratMove(){
     yes_btn.disabled = true;
-    rat.style.display = 'block';
     
     let startX = 1500;
     let startY = 110
@@ -138,6 +192,7 @@ function ratMove(){
         rat.src = rat_move[rat_currMove];
     }, 100);
 
+    rat.style.display = 'block';
     let moveInterval = setInterval(function() {
         // rat position change
         currX += stepX;

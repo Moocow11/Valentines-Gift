@@ -34,13 +34,31 @@ body {
     color: white
 }
 #punch_btn {
-    background: rgb(177, 79, 79);
-    position: absolute;
-    color: white
+    width: 180px;  /* Adjust size */
+    cursor: pointer;  /* Show it's clickable */
+    image-rendering: pixelated;
+    position: relative;
+    top: -80px;
 }
 #try_again {
     background: rgb(105, 79, 177);
-    color: white
+    color: white;
+    position: absolute;
+    top: 120px;
+}
+#win_btn {
+    background: rgb(64, 163, 81);
+    color: white;
+    position: absolute;
+    top: 120px;
+}
+#replay_btn {
+    background: rgb(64, 99, 163);
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    transform: translateX(-50%);  /* Centers it */
 }
 
 #question_page {
@@ -89,8 +107,8 @@ body {
 #rat_punch {
     display: none;  /* Hidden during question page */
     position: absolute;
-    top: 270px;
-    left: 650px;
+    top: 250px;
+    left: 635px;
     width: 150px;
     image-rendering: pixelated;
 }
@@ -103,5 +121,21 @@ body {
     display: flex;
     justify-content: center;
     gap: 30px;
-    margin-top: 100px;  /* Spacing from top */
+    margin-top: 80px;  /* Spacing from top */
+}
+
+.info {
+    position: absolute;
+    background: rgb(68, 68, 68);
+    color: white;
+
+    border-color: rgb(172, 172, 172);
+    border-width: 3px;
+    border-style: solid;
+   
+    padding: 5px;
+    transform: scale(1.2);
+
+    left: 300px;
+    top: 300px;
 }
