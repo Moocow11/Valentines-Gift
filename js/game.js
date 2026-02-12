@@ -31,6 +31,15 @@ let try_again = document.getElementById("try_again");
 let question_page = document.getElementById("question_page");
 let punch_game = document.getElementById("punch_game");
 
+let go_to_gift_btn = document.getElementById('go_to_gift_btn');
+
+if (localStorage.getItem('game_completed') === 'true') {
+    go_to_gift_btn.style.display = 'block';
+}
+go_to_gift_btn.addEventListener('click', function() {
+    window.location.href = 'gift.html';
+});
+
 yes_btn.addEventListener('click', function() {
     if (rat_life>0){
         yes_btn.style.visibility = 'hidden';  // Hide real button
@@ -84,6 +93,7 @@ punch_btn.addEventListener('click', function(){
             rat_punch.src = 'sprites/rat/rat_dead.png';
             no_btn.style.display = 'none';
             win_btn.textContent = "You Beat The Rat!"
+            localStorage.setItem('game_completed', 'true');
         } else if (rat_life === 1) {
             rat_punch.src = 'sprites/rat/rat_damage.png'
             win_btn.textContent = "Great!";
@@ -214,4 +224,3 @@ function ratMove(){
         }
     }, 30)
 }
-

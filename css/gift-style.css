@@ -42,7 +42,7 @@ p {
     width: 400px;
 }
 
-#card {
+#envelope {
     display: none;
     position: absolute;
     width: 50px;  /* Start tiny */
@@ -52,7 +52,7 @@ p {
     cursor: pointer;
     transition: transform 0.5s ease;
 }
-#card.show {
+#envelope.show {
     transform: translate(-50%, -50%) scale(1);  /* Grow to normal size */
 }
 #card_inside {
