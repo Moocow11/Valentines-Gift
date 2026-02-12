@@ -1,0 +1,67 @@
+h1 {
+    color: white;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+}
+body {
+    background: rgb(255, 203, 248);
+    padding: 60px 80px;
+    border-width: 30px;
+}
+p {
+    color: rgb(77, 77, 77);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+#replay_btn {
+    background: rgb(64, 99, 163);
+    color: white;
+    
+    padding: 10px 15px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 25px;
+
+    position: absolute;
+    left: 50%;
+    top: 85%;
+    transform: translateX(-50%);  /* Centers it */
+}
+
+#gift_box {
+    image-rendering: pixelated;
+
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translateX(-50%);
+    width: 400px;
+}
+
+#card {
+    display: none;
+    position: absolute;
+    width: 50px;  /* Start tiny */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.1);
+    cursor: pointer;
+    transition: transform 0.5s ease;
+}
+#card.show {
+    transform: translate(-50%, -50%) scale(1);  /* Grow to normal size */
+}
+#card_inside {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    z-index: 1000;
+}

@@ -52,14 +52,7 @@ body {
     position: absolute;
     top: 120px;
 }
-#replay_btn {
-    background: rgb(64, 99, 163);
-    color: white;
-    position: absolute;
-    left: 50%;
-    top: 70%;
-    transform: translateX(-50%);  /* Centers it */
-}
+
 
 #question_page {
     position: relative;
