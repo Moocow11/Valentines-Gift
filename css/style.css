@@ -10,6 +10,17 @@ body {
     padding: 60px 80px;
     border-width: 30px;
 }
+#explanation {
+    color:rgb(156, 156, 156);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 20px;
+    display: none;
+
+    position: absolute;
+    left: 60%;
+    top: 150%;
+    justify-content: center;
+}
 
 .buttons {
     font-family: 'Press Start 2P', monospace;

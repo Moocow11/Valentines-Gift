@@ -2,10 +2,12 @@ let round = 1;
 let punch_cnt = 0;
 let punch_cnt_display = document.getElementById("punch_cnt");
 let punch_required = [8, 15, 35];
+
 let time_limit = [1, 2, 5];
 let timer_display = document.getElementById("timer");
 let startTime = null;
 let checkTimer = null;
+
 let rat_punch = document.getElementById("rat_punch");
 let punch_btn_frames = ['sprites/punch_btn/punch_btn1.png', 'sprites/punch_btn/punch_btn2.png'];
 let win_btn = document.getElementById("win_btn");
@@ -33,6 +35,8 @@ let punch_game = document.getElementById("punch_game");
 
 let go_to_gift_btn = document.getElementById('go_to_gift_btn');
 
+let yes_clicked = false;
+
 if (localStorage.getItem('game_completed') === 'true') {
     go_to_gift_btn.style.display = 'block';
 }
@@ -41,6 +45,7 @@ go_to_gift_btn.addEventListener('click', function() {
 });
 
 yes_btn.addEventListener('click', function() {
+    yes_clicked = true;
     if (rat_life>0){
         yes_btn.style.visibility = 'hidden';  // Hide real button
         yes_anim.style.display = 'block';
@@ -52,17 +57,22 @@ yes_btn.addEventListener('click', function() {
     }
 });
 no_btn.addEventListener('click', function(){
-    try_again.style.display = 'none';
-    question_page.style.display = 'none';
-    punch_game.style.display = 'block';
-    
-    rat.style.display = 'none';
-    rat_punch.style.display = 'block';
-    
-    yes_btn.style.visibility = 'visible';
-    yes_anim.style.display = 'none';
-    
-    punch_game_start();
+    if (!yes_clicked) {
+        window.location.href = 'sad.html';
+    }
+    else {
+        try_again.style.display = 'none';
+        question_page.style.display = 'none';
+        punch_game.style.display = 'block';
+        
+        rat.style.display = 'none';
+        rat_punch.style.display = 'block';
+        
+        yes_btn.style.visibility = 'visible';
+        yes_anim.style.display = 'none';
+        
+        punch_game_start();
+    }
 })
 punch_btn.addEventListener('click', function(){
     punch_btn.src = punch_btn_frames[1];
@@ -137,6 +147,7 @@ win_btn.addEventListener('click', function(){
     yes_btn.disabled = false;
     yes_btn.style.visibility = 'visible';
     yes_anim.style.display = 'none';
+    document.getElementById("explanation").style.display = 'none';
     
     rat.style.display = 'none';
     rat.style.left = '1500px';
@@ -223,6 +234,7 @@ function ratMove(){
                 }, i*100);
             }
             setTimeout(function() {
+                document.getElementById("explanation").style.display = 'block';
                 no_btn.disabled = false;
             }, 550);
         }
