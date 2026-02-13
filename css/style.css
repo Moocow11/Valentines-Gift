@@ -44,21 +44,28 @@ body {
     width: 180px;  /* Adjust size */
     cursor: pointer;  /* Show it's clickable */
     image-rendering: pixelated;
-    position: relative;
+    position: absolute;
+    
     top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 #try_again {
     background: rgb(105, 79, 177);
     color: white;
     position: absolute;
+    left: 50%;
     top: 120px;
+    transform: translateX(-50%);
     cursor: pointer;
 }
 #win_btn {
     background: rgb(64, 163, 81);
     color: white;
     position: absolute;
+    left: 50%;
     top: 120px;
+    transform: translateX(-50%);
     cursor: pointer;
 }
 
@@ -110,7 +117,8 @@ body {
     display: none;  /* Hidden during question page */
     position: absolute;
     top: 250px;
-    left: 635px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 150px;
     image-rendering: pixelated;
 }
