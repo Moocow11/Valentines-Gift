@@ -20,6 +20,7 @@ body {
     top: 175px;
     justify-content: center;
     gap: 30px;
+    
 }
 
 #yes_btn {
@@ -28,10 +29,16 @@ body {
     z-index: 10;
     /* y: 185, x: 521 
     */
+    cursor: pointer;
 }
 #no_btn {
     background: rgb(177, 79, 79);
-    color: white
+    color: white;
+    cursor: pointer;
+}
+#no_btn:disabled {
+    border: 2px solid rgba(172, 172, 172, 0.3);  /* Faded gray border */
+    cursor: not-allowed;  /* Shows "forbidden" cursor */
 }
 #punch_btn {
     width: 180px;  /* Adjust size */
@@ -45,12 +52,14 @@ body {
     color: white;
     position: absolute;
     top: 120px;
+    cursor: pointer;
 }
 #win_btn {
     background: rgb(64, 163, 81);
     color: white;
     position: absolute;
     top: 120px;
+    cursor: pointer;
 }
 
 
@@ -146,4 +155,5 @@ body {
     position: absolute;
     top: 12%;
     left: 5%;
+    cursor: pointer;
 }

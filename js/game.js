@@ -179,6 +179,7 @@ function punch_game_start(){
 
 function ratMove(){
     yes_btn.disabled = true;
+    no_btn.disabled = true;
     
     let startX = 1500;
     let startY = 110
@@ -221,6 +222,9 @@ function ratMove(){
                     yes_anim.src = yes_anim_frames[i];
                 }, i*100);
             }
+            setTimeout(function() {
+                no_btn.disabled = false;
+            }, 550);
         }
     }, 30)
 }

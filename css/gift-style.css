@@ -30,6 +30,7 @@ p {
     left: 50%;
     top: 85%;
     transform: translateX(-50%);  /* Centers it */
+    cursor: pointer;
 }
 
 #gift_box {
@@ -40,12 +41,13 @@ p {
     top: 30%;
     transform: translateX(-50%);
     width: 400px;
+    cursor: pointer;
 }
 
 #envelope {
     display: none;
     position: absolute;
-    width: 50px;  /* Start tiny */
+    width: 100px;  /* Start tiny */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(0.1);
