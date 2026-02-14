@@ -4,6 +4,8 @@ let gift_box_anim = ['sprites/gift_box/gift_box1.png', 'sprites/gift_box/gift_bo
 let envelope = document.getElementById('envelope');
 let card_opened = document.getElementById('card_opened');
 let card_closed = document.getElementById('card_closed');  // closed card
+let gift1 = document.getElementById('gift1');
+let gift2 = document.getElementById('gift2');
 let overlay = document.getElementById('overlay');
 
 let replay_btn = document.getElementById('replay_btn');
@@ -29,13 +31,19 @@ gift_box.addEventListener('click', function() {
 envelope.addEventListener('click', function() {
     overlay.style.display = 'block';
     envelope.style.display = 'none';
+    card_closed.style.display = 'block';
     card_opened.style.display = 'block';
+    gift1.style.display = 'block';
+    gift2.style.display = 'block';
 });
 
 // Click overlay to close
 overlay.addEventListener('click', function() {
     overlay.style.display = 'none';
     card_opened.style.display = 'none';
+    card_closed.style.display = 'none';
+    gift1.style.display = 'none';
+    gift2.style.display = 'none';
     envelope.style.display = 'block';
 });
 

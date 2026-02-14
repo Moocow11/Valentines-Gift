@@ -27,6 +27,7 @@ let yes_anim_frames = ['sprites/yes_btn/yes_btn1.png', 'sprites/yes_btn/yes_btn2
 
 let yes_btn = document.getElementById("yes_btn");
 let no_btn = document.getElementById("no_btn");
+let no_cnt = 0;
 let punch_btn = document.getElementById("punch_btn");
 let try_again = document.getElementById("try_again");
 
@@ -57,8 +58,17 @@ yes_btn.addEventListener('click', function() {
     }
 });
 no_btn.addEventListener('click', function(){
+    no_cnt++;
+
     if (!yes_clicked) {
-        window.location.href = 'sad.html';
+        if (no_cnt >= 4) {
+            // Go to sad page after 4 clicks
+            window.location.href = 'sad.html';
+        } else {
+            // Make button smaller and move it randomly
+            let newSize = 100 - (no_cnt * 15);  // Gets 15% smaller each time
+            no_btn.style.transform = `scale(${newSize / 100})`;
+        }
     }
     else {
         try_again.style.display = 'none';
@@ -96,6 +106,7 @@ punch_btn.addEventListener('click', function(){
         rat_life--;
         startTime = null;
         punch_cnt = 0;
+        yes_clicked = false;
         
         hearts[rat_life].src = 'sprites/heart/heart_damage.png';
         
@@ -160,18 +171,11 @@ function punch_game_start(){
     try_again.style.display = 'none';
     punch_cnt_display.textContent = "0/" + punch_required[round - 1];
     timer_display.textContent = "Time: " + time_limit[round - 1].toFixed(2) + "s";
-
-
-    console.log("try again display: ", try_again.style.display);
-    console.log("starttime", startTime);
     
     if (startTime !== null){
         checkTimer = setInterval(function(){
             let elapsed = (Date.now() - startTime) / 1000;
             timer_display.textContent = "Time: " + (Math.abs((time_limit[round - 1] - elapsed)).toFixed(2)) + "s";
-
-            console.log("elapsed:", elapsed);
-            console.log("time limit", time_limit[round - 1]);
 
             if (elapsed > time_limit[round - 1]){
                 clearInterval(checkTimer);
@@ -196,9 +200,6 @@ function ratMove(){
     let startY = 110
     let targetX = yes_btn.offsetLeft;
     let targetY = 340;
-
-    // console.log("Start X:", startX, "Start Y:", startY);
-    // console.log("Target X:", targetX, "Target Y:", targetY);
 
     let currX = startX;
     let currY = startY;
@@ -239,4 +240,8 @@ function ratMove(){
             }, 550);
         }
     }, 30)
+}
+
+function game_reset() {
+    
 }
